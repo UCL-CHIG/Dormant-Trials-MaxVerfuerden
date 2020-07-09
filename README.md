@@ -17,8 +17,8 @@ Using data from 2,208 participants I linked 7 different infant formula RCTs cond
 ## Software
 This code was developed using Stata.
 
-## Associated publications:
+## Associated publications
 TBC
 
-## Purpose and data sharing:
+## Purpose and data sharing
 The purpose of this repository is to make my PhD data analysis transparent and reproducible. Unfortunately, the data cannot be shared because it is subject to a data sharing agreement which allows only identified and information-governance trained users to process it in a data safe haven which needs to have passed the latest IG toolkit standards. Because of this, I wrote the code in the UCL data safe haven (DSH), which does not have access to the internet. The code is subject to output control and has to be exported and uploaded manually.  
