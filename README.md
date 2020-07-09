@@ -4,7 +4,7 @@ Code for Max Verfuerden's PhD linking dormant trials to the National Pupil Datab
 ## Where to start
 The 000-masterfile.do calls all other do-files in the right order and describes which datasets are created and used at which step.
 
-## Project background ## 
+## Project background 
 
 _BACKGROUND:_
 
@@ -14,6 +14,11 @@ _METHODS:_
 
 Using data from 2,208 participants I linked 7 different infant formula RCTs conducted in England (1993-2001) to the English administrative education database NPD. The primary end point was attainment at a compulsory maths exam at age 16, years. Secondary end points included educational attainment at age 11 and special educational needs status. Depending on the RCT, participants were healthy term infants, preterms or infants born small for gestational age and were given either iron-, LCPUFA-, nucleotide-, energy-, or sn-2 palmitate enriched formula or standard formula. 
 
+## Software
+This code was developed using Stata.
+
+## Associated publications:
+TBC
 
 ## Purpose and data sharing:
 The purpose of this repository is to make my PhD data analysis transparent and reproducible. Unfortunately, the data cannot be shared because it is subject to a data sharing agreement which allows only identified and information-governance trained users to process it in a data safe haven which needs to have passed the latest IG toolkit standards. Because of this, I wrote the code in the UCL data safe haven (DSH), which does not have access to the internet. The code is subject to output control and has to be exported and uploaded manually.  
