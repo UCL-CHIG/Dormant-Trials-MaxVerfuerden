@@ -18,7 +18,7 @@ Using data from 2,208 participants I linked 7 different infant formula RCTs cond
 This code was developed using Stata.
 
 ## Associated publications
-Verfürden M, Harron K, Jerrim J, et alInfant formula composition and educational performance: a protocol to extend follow-up for a set of randomised controlled trials using linked administrative education recordsBMJ Open 2020;10:e035968. doi: 10.1136/bmjopen-2019-035968 https://bmjopen.bmj.com/content/10/7/e035968
+Verfürden M, Harron K, Jerrim J, et al Infant formula composition and educational performance: a protocol to extend follow-up for a set of randomised controlled trials using linked administrative education recordsBMJ Open 2020;10:e035968. doi: 10.1136/bmjopen-2019-035968 https://bmjopen.bmj.com/content/10/7/e035968
 
 ## Purpose and data sharing
 The purpose of this repository is to make my PhD data analysis transparent and reproducible. Unfortunately, the data cannot be shared because it is subject to a data sharing agreement which allows only identified and information-governance trained users to process it in a data safe haven which needs to have passed the latest IG toolkit standards. Because of this, I wrote the code in the UCL data safe haven (DSH), which does not have access to the internet. The code is subject to output control and has to be exported and uploaded manually.  
