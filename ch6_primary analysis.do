@@ -5,6 +5,7 @@ created: 		31/01/2020
 last updated: 	01/02/2020
 				21/05/2020 - unblinded
 				23/05/2020 - replaced birthyear with birthmonth because byr collinear with trial
+				21/07/2020 - I realised I forgot to include gestational age in the imputation model
 last run:	 	01/02/2020
 				27/04/2020
 				21/05/2020
@@ -32,74 +33,73 @@ use 			"S:\Head_or_Heart\max\post-trial-extension\1-data\samplingframe.dta", cle
 *DESCRIBE DATASET*
 tab 			trial group, nolab		
 
-* how many have died?
-tab 			trial group  if died==1	,	
-
-
+* exclude those that were only necessary for the imputation
+tab 			trial group  if died==1	
+drop			if died==1
 drop 			if group==4 // to not skew the z-scores
 drop			if group==3
 
 ********************************************************************************
-*				CREATE Z-SCORES										 	       
+*				CREATE Z-SCORES	 (for complete case analysis)									 	       
 ********************************************************************************
 replace 		bayley_MDI=. if  bayley_MDI==-99
 replace 		bayley_PDI=. if  bayley_PDI==-99
 replace 		iq_score=. if  bayley_PDI==-99
 
 * z-score Bayley MDI (only in trials 3-6 and 8) :		
-tabstat		bayley_MDI, by(trial) s(mean sd min max)
-levelsof	trial, local(levels) 
-foreach		l of local levels {
-egen		z_bayleyMDI_t`l' = std(bayley_MDI) if trial == `l'  & !inlist(trial,7,9)
-tabstat		z_bayleyMDI_t`l',  s(mean sd min max)
+tabstat			bayley_MDI, by(trial) s(mean sd min max)
+levelsof		trial, local(levels) 
+foreach			l of local levels {
+egen			z_bayleyMDI_t`l' = std(bayley_MDI) if trial == `l'  & !inlist(trial,7,9)
+tabstat			z_bayleyMDI_t`l',  s(mean sd min max)
 }
 
 * z-score Bayley PDI :		
-tabstat		bayley_PDI, by(trial) s(mean sd min max)
-levelsof	trial, local(levels) 
-foreach		l of local levels {
-egen		z_bayleyPDI_t`l' = std(bayley_PDI) if trial == `l' & !inlist(trial,7,9)
-tabstat		z_bayleyPDI_t`l',  s(mean sd min max)
+tabstat			bayley_PDI, by(trial) s(mean sd min max)
+levelsof		trial, local(levels) 
+foreach			l of local levels {
+egen			z_bayleyPDI_t`l' = std(bayley_PDI) if trial == `l' & !inlist(trial,7,9)
+tabstat			z_bayleyPDI_t`l',  s(mean sd min max)
 }
 
 * z-score IQ score :		
-tabstat		iq_score, by(trial) s(mean sd min max)
-levelsof	trial, local(levels) 
-foreach		l of local levels {
-egen		z_iq_score_t`l' = std(iq_score) if trial == `l' & !inlist(trial,7,8,9)
-tabstat		z_iq_score_t`l',  s(mean sd min max)
+tabstat			iq_score, by(trial) s(mean sd min max)
+levelsof		trial, local(levels) 
+foreach			l of local levels {
+egen			z_iq_score_t`l' = std(iq_score) if trial == `l' & !inlist(trial,7,8,9)
+tabstat			z_iq_score_t`l',  s(mean sd min max)
 }
 
 * z-score GCSE Mathematics:		
-tabstat		gcse2210_score, by(trial) s(mean sd min max)
-levelsof	trial, local(levels) 
-foreach		l of local levels {
-egen		z_gcsemat_t`l' = std(gcse2210_score) if trial == `l' 
-tabstat		z_gcsemat_t`l',  s(mean sd min max)
+tabstat			gcse2210_score, by(trial) s(mean sd min max)
+levelsof		trial, local(levels) 
+foreach			l of local levels {
+egen			z_gcsemat_t`l' = std(gcse2210_score) if trial == `l' 
+tabstat			z_gcsemat_t`l',  s(mean sd min max)
 }
 
 * z-score GCSE English lang:		
-tabstat		gcse5030_score, by(trial) s(mean sd min max)
-levelsof	trial, local(levels) 
-foreach		l of local levels {
-egen		z_gcseeng_t`l' = std(gcse5030_score) if trial == `l' 
-tabstat		z_gcseeng_t`l',  s(mean sd min max)
+tabstat			gcse5030_score, by(trial) s(mean sd min max)
+levelsof		trial, local(levels) 
+foreach			l of local levels {
+egen			z_gcseeng_t`l' = std(gcse5030_score) if trial == `l' 
+tabstat			z_gcseeng_t`l',  s(mean sd min max)
 }
 
 * z-score KS2 Mathematics:		
-tabstat		ks2_mat_raw, by(trial) s(mean sd min max)
-levelsof	trial, local(levels) 
-foreach		l of local levels {
-egen		z_ks2mat_t`l' = std(ks2_mat_raw) if trial == `l' 
-tabstat		z_ks2mat_t`l',  s(mean sd min max)
+tabstat			ks2_mat_raw, by(trial) s(mean sd min max)
+levelsof		trial, local(levels) 
+foreach			l of local levels {
+egen			z_ks2mat_t`l' = std(ks2_mat_raw) if trial == `l' 
+tabstat			z_ks2mat_t`l',  s(mean sd min max)
 }
 
 * z-score KS2 English lang:		
-tabstat		ks2_engread_raw, by(trial) s(mean sd min max)
-levelsof	trial, local(levels) 
-foreach		l of local levels {
-egen		z_ks2eng_t`l' = std(ks2_engread_raw) if trial == `l' 
-tabstat		z_ks2eng_t`l',  s(mean sd min max)
+tabstat			ks2_engread_raw, by(trial) s(mean sd min max)
+levelsof		trial, local(levels) 
+foreach			l of local levels {
+egen			z_ks2eng_t`l' = std(ks2_engread_raw) if trial == `l' 
+tabstat			z_ks2eng_t`l',  s(mean sd min max)
 }
 
 * copy to all records:	

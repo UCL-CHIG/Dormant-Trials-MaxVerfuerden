@@ -70,11 +70,20 @@ do 			"S:\Head_or_Heart\max\post-trial-extension\2-do\cr_addoutcomes.do"
 // creates: "S:\Head_or_Heart\max\post-trial-extension\1-data\finalsampleandmainoutcomes.dta"
 
 ********************************************************************************
-* STEP 6:	PERFORM MULTIPLE IMPUTATION 				   
+* STEP 6:	PERFORM MULTIPLE IMPUTATION (PRIMARY) 				   
 ********************************************************************************
 // uses: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\finalsampleandmainoutcomes.dta" (from step 5)
 do 			"S:\Head_or_Heart\max\post-trial-extension\2-do\mi_edu_outcomes.do"
 // creates: "S:\Head_or_Heart\max\post-trial-extension\1-data\mi_mainoutcomes.dta"
+
+********************************************************************************
+* STEP 7:	PERFORM MULTIPLE IMPUTATION (FOR INTERACTIONS) 				   
+********************************************************************************
+// uses: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\finalsampleandmainoutcomes.dta" (from step 5)
+do 			"S:\Head_or_Heart\max\post-trial-extension\2-do\mi_interactions.do"
+// creates: "S:\Head_or_Heart\max\post-trial-extension\1-data\mi_interaction_smokdur.dta"
+// and: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\mi_interaction_bwt.dta"
+// and: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\mi_interaction_sex.dta"
 
 ********************************************************************************
 * PRIMARY ANALYSIS				   
@@ -87,6 +96,14 @@ do 			"S:\Head_or_Heart\max\post-trial-extension\2-do\ch6_primary analysis.do"
 ********************************************************************************
 // uses: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\samplingframe.dta" (from step 6)
 do 			"S:\Head_or_Heart\max\post-trial-extension\2-do\ch6_secondary analysis.do"
+
+********************************************************************************
+* EXPLORATORY ANALYSIS				   
+********************************************************************************
+// uses: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\mi_interaction_smokdur.dta"(from step 7)
+// and: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\mi_interaction_bwt.dta"(from step 7)
+// and: 	"S:\Head_or_Heart\max\post-trial-extension\1-data\mi_interaction_sex.dta" (from step 7)
+do 			"S:\Head_or_Heart\max\post-trial-extension\2-do\ch6_exploratory.do"
 
 ********************************************************************************
 * EXTREME CASE ANALYSIS				   

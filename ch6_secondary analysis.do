@@ -186,7 +186,6 @@ tab 			trial group if _mi_m==0, m  //  1,727 kids (09 May 2020)
 drop 			if group ==3
 drop 			if died==1
 
-
 ***
 *** z-score GCSE English: ***
 *** CRUDE
